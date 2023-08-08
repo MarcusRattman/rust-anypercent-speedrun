@@ -1,9 +1,11 @@
 use std::fmt;
+
 struct House {
     material: Material,
     residents: i32,
     address: String,
 }
+
 impl House {
     pub fn new(mat: Material, res: i32, adrs: &str) -> Self {
         let house = Self {
@@ -26,6 +28,7 @@ impl House {
         println!("Changed material of the House:\n{self}")
     }
 }
+
 #[derive(Clone, Copy)]
 enum Material {
     Brick,
