@@ -4,6 +4,15 @@ struct House {
     residents: i32,
     address: String,
 }
+impl House {
+    pub fn new(mat: Material, res: i32, adrs: &str) -> Self {
+        return Self {
+            material: mat,
+            residents: res,
+            address: String::from(adrs),
+        };
+    }
+}
 #[derive(Clone, Copy)]
 enum Material {
     Brick,
@@ -25,41 +34,29 @@ impl fmt::Display for House {
     }
 }
 
-fn giff_house(mat: Material, res: i32, adrs: &str) -> House {
-    House {
-        material: mat,
-        residents: res,
-        address: String::from(adrs),
-    }
-}
-
 fn add_resident(house: &mut House) {
     house.residents += 1;
+    println!("Added resident to the House:\n{house}");
 }
 
 fn change_material(house: &mut House, material: Option<Material>) {
     let mat = material.unwrap_or(house.material);
     house.material = mat;
+    println!("Changed material of the House:\n{house}")
 }
 
 fn main() {
     let house = House {
         material: Material::Brick,
         residents: 10,
-        address: String::from("Pushkina st. Kolotushkina")
+        address: String::from("Kolotushkina, Pushkina st.")
     };
 
     println!("House 1:\n{house}");
 
-    let mut second_house = giff_house(Material::Concrete, 32, "Kolotushkina st. Pushkina");
+    let mut second_house = House::new(Material::Concrete, 32, "Pushkina, Kolotushkina st.");
 
     println!("House 2:\n{second_house}");
-
     add_resident(&mut second_house);
-
-    println!("Added resident to House 2:\n{second_house}");
-
     change_material(&mut second_house, Some(Material::Brick));
-
-    println!("Changed material of House 2:\n{second_house}")
 }
