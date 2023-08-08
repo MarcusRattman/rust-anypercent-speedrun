@@ -15,6 +15,16 @@ impl House {
         println!("Built new house:\n{house}");
         return house;
     }
+
+    pub fn add_resident(&mut self) {
+        self.residents += 1;
+        println!("Added resident to the House:\n{self}");
+    }
+
+    pub fn change_material(&mut self, material: Option<Material>) {
+        self.material = material.unwrap_or(self.material);
+        println!("Changed material of the House:\n{self}")
+    }
 }
 #[derive(Clone, Copy)]
 enum Material {
@@ -37,24 +47,15 @@ impl fmt::Display for House {
     }
 }
 
-fn add_resident(house: &mut House) {
-    house.residents += 1;
-    println!("Added resident to the House:\n{house}");
-}
-
-fn change_material(house: &mut House, material: Option<Material>) {
-    let mat = material.unwrap_or(house.material);
-    house.material = mat;
-    println!("Changed material of the House:\n{house}")
-}
-
 fn main() {
     let house = House::new(Material::Brick, 10, "Kolotushkina, Pushkina st.");
     let mut second_house = House::new(Material::Concrete, 32, "Pushkina, Kolotushkina st.");
     
     println!("House 1:\n{house}");
     println!("House 2:\n{second_house}");
-    
-    add_resident(&mut second_house);
-    change_material(&mut second_house, Some(Material::Brick));
+
+    second_house.add_resident();
+    second_house.change_material(None);
+    second_house.change_material(Some(Material::Brick));
+    second_house.add_resident();
 }
