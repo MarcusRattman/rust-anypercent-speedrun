@@ -6,11 +6,14 @@ struct House {
 }
 impl House {
     pub fn new(mat: Material, res: i32, adrs: &str) -> Self {
-        return Self {
+        let house = Self {
             material: mat,
             residents: res,
             address: String::from(adrs),
         };
+
+        println!("Built new house:\n{house}");
+        return house;
     }
 }
 #[derive(Clone, Copy)]
@@ -46,17 +49,12 @@ fn change_material(house: &mut House, material: Option<Material>) {
 }
 
 fn main() {
-    let house = House {
-        material: Material::Brick,
-        residents: 10,
-        address: String::from("Kolotushkina, Pushkina st.")
-    };
-
-    println!("House 1:\n{house}");
-
+    let house = House::new(Material::Brick, 10, "Kolotushkina, Pushkina st.");
     let mut second_house = House::new(Material::Concrete, 32, "Pushkina, Kolotushkina st.");
-
+    
+    println!("House 1:\n{house}");
     println!("House 2:\n{second_house}");
+    
     add_resident(&mut second_house);
     change_material(&mut second_house, Some(Material::Brick));
 }
