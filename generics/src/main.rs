@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 fn main() {
     let numarray: [i32; 5] = [0, 25, 3, 45, 96];
     let vector: Vec<i32> = vec![0, 25, 3, 45, 96];
@@ -12,10 +14,12 @@ fn main() {
 }
 
 fn largest<T>(array: T) where 
-    T: IntoIterator, 
+    T: IntoIterator + Debug,
     T::Item: std::cmp::Ord + Default + std::fmt::Display {
         
     let mut lrg: T::Item = T::Item::default();
+
+    println!("\n{:?}", array);
 
     array.into_iter().for_each(| element | {
         if element > lrg {
@@ -23,7 +27,7 @@ fn largest<T>(array: T) where
         }
     });
 
-    println!("Largest for: {}", lrg);
+    println!("Largest: {}", lrg);
 }
 
 struct Point<T: std::fmt::Display> {
