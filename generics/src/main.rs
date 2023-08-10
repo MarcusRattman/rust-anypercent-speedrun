@@ -8,6 +8,8 @@ fn main() {
     largest(numarray);
     largest(chararray);
     largest(vector);
+    largest(String::from("String").chars());
+    largest("String slice uwu".chars());
 
     let point = Point { x: 32, y: 12 };
     point.get();
