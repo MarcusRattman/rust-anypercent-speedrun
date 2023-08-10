@@ -1,4 +1,5 @@
-use std::fmt::Debug;
+use std::fmt::{Debug, Display};
+use std::cmp::Ord;
 
 fn main() {
     let numarray: [i32; 5] = [0, 25, 3, 45, 96];
@@ -17,7 +18,7 @@ fn main() {
 
 fn largest<T>(collection: T) where 
     T: IntoIterator + Debug,
-    T::Item: std::cmp::Ord + Default + std::fmt::Display {
+    T::Item: Ord + Default + Display {
         
     let mut lrg: T::Item = T::Item::default();
 
