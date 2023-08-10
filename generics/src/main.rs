@@ -15,15 +15,15 @@ fn main() {
     point.get();
 }
 
-fn largest<T>(array: T) where 
+fn largest<T>(collection: T) where 
     T: IntoIterator + Debug,
     T::Item: std::cmp::Ord + Default + std::fmt::Display {
         
     let mut lrg: T::Item = T::Item::default();
 
-    println!("\n{:?}", array);
+    println!("\n{:?}", collection);
 
-    array.into_iter().for_each(| element | {
+    collection.into_iter().for_each(| element | {
         if element > lrg {
             lrg = element;
         }
