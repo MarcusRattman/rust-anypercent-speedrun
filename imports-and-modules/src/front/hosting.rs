@@ -7,8 +7,13 @@ pub struct Table {
     customer: Customer,
 }
 
+pub enum WaitlistStatus {
+    Added,
+    Failed,
+}
+
 impl Table {
-    fn new(customer: Customer) -> Self {
+    pub fn new(customer: Customer) -> Self {
         Self {
             number: rand::thread_rng().gen_range(1..=100),
             customer: customer,
@@ -16,9 +21,11 @@ impl Table {
     }
 }
 
-pub fn add_to_waitlist(customer: Customer) {
+pub fn add_to_waitlist(customer: Customer) -> Option<WaitlistStatus> {
     println!("Good afternoon!\nPlease have a seat.\n");
     let table = Table::new(customer);
 
     serving::take_order(table);
+
+    Some(WaitlistStatus::Added)
 }
