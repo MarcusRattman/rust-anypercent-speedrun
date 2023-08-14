@@ -48,7 +48,7 @@ fn search<'a>(query: &str, text: &'a str) -> Vec<&'a str> {
     result
 }
 
-pub fn search_insensitive<'a>(query: &str, text: &'a str) -> Vec<&'a str> {
+fn search_insensitive<'a>(query: &str, text: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
     let mut result = Vec::new();
 
