@@ -4,8 +4,14 @@ fn main() {
     let text = Rc::new("Ayyy LmAo".to_string());
     let query = Rc::new("lmao".to_string());
 
-    println!("{:?}", contains(text.clone(), query.clone()));
-    println!("{:?}", contains_case(text.clone(), query.clone()));
+    let cont = contains(text.clone(), query.clone());
+    let cont_case = contains_case(text.clone(), query.clone());
+
+    println!("{:?}", cont);                     // empty vec
+    println!("{:?}", cont_case);                // ["ayy lmao"]
+
+    println!("{}", Rc::strong_count(&text));    // 1
+    println!("{}", Rc::strong_count(&query));   // 1
 }
 
 fn contains(text: Rc<String>, query: Rc<String>) -> Vec<String> {
